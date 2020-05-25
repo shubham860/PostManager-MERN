@@ -1,13 +1,19 @@
 const { Router } = require('express')
+const controller = require('./postMessage.controllers')
 
 const postMessageRouter = Router()
 
-const controller = (req,res) => {
-    res.send({message : "Data is coming..."})
-}
-
 postMessageRouter
     .route('/')
-    .get(controller)
+    .get(controller.getMany)
+    .post(controller.createOne)
+
+
+postMessageRouter
+    .route('/:id')
+    .get(controller.getOne)
+    .put(controller.updateOne)
+    .delete(controller.removeOne)
+
 
 module.exports = postMessageRouter;    

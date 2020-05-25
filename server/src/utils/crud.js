@@ -20,7 +20,7 @@ const removeOne = model => async(req,res) => {
 
 const updateOne = model => async(req,res) => {
     const doc = await model.findOneAndUpdate(
-    { _id: req.params.id, createdBy: req.user._id },
+    { _id: req.params.id },
     req.body,
     { new: true }
     )
@@ -31,9 +31,9 @@ const updateOne = model => async(req,res) => {
 
 const createOne = model => async(req,res) => {
     const doc = await model.create(req.body)
-    res.status(201).json({ data: doc })
+    res.status(201).send({ data: doc })
 }
-
+               
 const crudController = (model) => ({
     getOne: getOne(model),
     getMany: getMany(model),
@@ -41,3 +41,5 @@ const crudController = (model) => ({
     updateOne: updateOne(model),
     createOne: createOne(model)
 })
+
+module.exports = {crudController};
