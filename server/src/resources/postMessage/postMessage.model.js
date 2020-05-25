@@ -9,7 +9,9 @@ const postMessage = new mongoose.Schema({
         type: String,
         required: true,
     }
-})
+},
+{timestamps: true}
+)
 
 const postMessageModel = mongoose.model('postMessage', postMessage)
 
